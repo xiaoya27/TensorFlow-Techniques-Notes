@@ -1,10 +1,13 @@
 
 ## this is my note from advanced Computer Vision with TensorFlow
 
-### Object Detection and Sliding Windows
+### Object Detection and Sliding Windows methodologies
+
 
 examples:
-face recog and verification
+1. face recog and verification
+2. vehicle counting
+3. etc.
 
 methodologies: 
 1. sliding window: 
@@ -28,6 +31,12 @@ Steps:
 1. input image + region ( with conv net ) 
 
 Faster R-CNN ()
+
+RPN ( region proposal network) ---fast way of finding AOI
+
+### Model training 
+
+
 
 
 
