@@ -48,7 +48,15 @@ steps
 ``
 `converted_img`
 the model is desgined to take multi images 
-`ccc`
+
+    `# Example of Apply image detector on a single image.`
+
+    `detector = hub.load("https://tfhub.dev/tensorflow/faster_rcnn/inception_resnet_v2_640x640/1")`
+
+    `detector_output = detector(image_tensor)`
+
+    `class_ids = detector_output["detection_classes"]`
+
 The result would be 
 possibities
 
@@ -60,19 +68,35 @@ category
 
 basic architecture
 
-Encoder( feature extraction) --downsampled feature map--> Decoder( up sample feature map, generate pixel-wise label map )  ---> n*n*classes
+Encoder( feature extraction) --downsampled feature map--> 
+Decoder( up sample feature map, generate pixel-wise label map )  ---> n*n*classes
 
 
 Popular Architectures
 
 * Fully-convnet(FCN) 
+
 ** Decoder part : FCN-32s, FCN-16s,FCN-8s ( stride size, smaller the better accuracy)
+
+    compare Upsampling ( nearest, bilinear)  vs Conv2DTranspose: 
+
+    Upsampling( not learned)
+    
+
+    `x = UpSample2D(size, data_format,interpolation)`
+    
+    
+    `Conv2DTranspose(filter, kernel_size)`
 
 ** popular encoder : VGG_16, Res50, Mobilenet
 
 * SegNet ( encoder and decoder is symmetric) 
 
-* Unet ( symmetric structure too) 
+* Unet ( symmetric structure too) (2015)
+
+    upsample+ skip connection between encoder and decoder ( the horizontal arrow) 
+
+
 * Mask R-CNN
 
 
