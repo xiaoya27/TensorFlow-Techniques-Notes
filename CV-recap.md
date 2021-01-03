@@ -101,6 +101,11 @@ Popular Architectures
 
 
 
+extra notes
+![img](https://miro.medium.com/max/770/1*IhP8BdoUpAbssltq0VBafg.png)
+
+
+
 
 
 
