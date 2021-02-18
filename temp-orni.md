@@ -11,18 +11,39 @@ First,
 $ python png_to_json_annot.py
 ```
 
+Modify the following variables if needed:
+
+```
+name
+data_path
+raw_image_dir
+anno_seg_json_dir
+train_prob
+val_prob
+```
+```
+$ python scripts/initialise_dataset_homemap.py
+```
 
 In order to train model, you have only to setup config file.  
-For example, modify config file /config_files/dgx_config_generic_gan.json on the following varibles .
+For example, modify config file /config_files/dgx_config_generic_gan.json on the following variables if needed.
 
-```yaml
-Net:
+```
+n_gpu
+batch_size
+data_dir
+dataframe_name
+input_folder_name
+annotation_folder_name
+epochs
+save_dir
+
 ```
 
 
 or if your image is too large , you can use scripts/tile_and_initialize_dataset.py for split your image 
 
-Modify the following part if needed:
+Modify the following variables if needed:
 
 ```
 $ python scripts/tile_and_initialize_dataset-homemap.py
@@ -41,7 +62,8 @@ $ CUDA_VISIBLE_DEVICES=1 python train.py --config config_files/dgx_config_generi
 
 To test the model: 
 
-Modify the following part if needed:
+
+Modify the following variables if needed:
 
 
 
