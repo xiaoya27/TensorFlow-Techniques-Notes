@@ -1,41 +1,54 @@
 # OrniSegmentation
-This repository implements resnet Unet for semantic segmentation.  
+
+This is implementation of resnet Unet for binary semantic segmentation.  
 
 
 ## How to train
+
+First, 
+
+```
+$ python png_to_json_annot.py
+```
+
+
 In order to train model, you have only to setup config file.  
-For example, write config file as below and save it as config/pascal_unet_res18_scse.yaml.
+For example, modify config file /config_files/dgx_config_generic_gan.json on the following varibles .
 
 ```yaml
 Net:
-  enc_type: 'resnet18'
-  dec_type: 'unet_scse'
-  num_filters: 8
-  pretrained: True
-Data:
-  dataset: 'pascal'
-  target_size: (512, 512)
-Train:
-  max_epoch: 20
-  batch_size: 2
-  fp16: True
-  resume: False
-  pretrained_path:
-Loss:
-  loss_type: 'Lovasz'
-  ignore_index: 255
-Optimizer:
-  mode: 'adam'
-  base_lr: 0.001
-  t_max: 10
+```
+
+
+or if your image is too large , you can use scripts/tile_and_initialize_dataset.py for split your image 
+
+Modify the following part if needed:
+
+```
+$ python scripts/tile_and_initialize_dataset-homemap.py
+```
+or 
+
+```
+$ python scripts/tile_and_initialize_dataset-homemap.py
 ```
 
 Then you can train this model by:
 
 ```
-$ python train.py ../config/pascal_unet_res18_scse.yaml
+$ CUDA_VISIBLE_DEVICES=1 python train.py --config config_files/dgx_config_generic_gan.json --gpu
 ```
 
+To test the model: 
+
+Modify the following part if needed:
+
+
+
+```
+ $ CUDA_VISIBLE_DEVICES=1 python test.py --config config_files/dgx_config_generic_gan.json --resume checkpoint-epoch1.pth --gpu
+ 
+```
 
 ## Directory tree
 ```
@@ -65,9 +78,8 @@ $ python train.py ../config/pascal_unet_res18_scse.yaml
 
 ## Environments
 - OS: Ubuntu18.04
-- python: 3.7.0
-- pytorch: 1.0.0
-- pretrainedmodels: 0.7.4
-- albumentations: 0.1.8  
+- python: 3.7.9
+- pytorch: 1.3.1
+- pretrainedmodels: 0.7.4 
 
 
